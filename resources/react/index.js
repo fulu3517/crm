@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
-
+import Main from './Router';
+import { BrowserRouter, Route } from 'react-router-dom';
 export default class Index extends Component {
     render() {
+        
         return (
-            <div>
-                    merhaba DEneem
-            </div>
+            <BrowserRouter>
+                <Route component={ Main }/>
+            </BrowserRouter>
         )
     }
 }

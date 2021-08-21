@@ -8,6 +8,6 @@
 </head>
 <body>
     <div id="index"></div>
-    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('react/index.js')}}"></script>
 </body>
 </html>
