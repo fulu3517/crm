@@ -12,7 +12,7 @@ const Main = () => {
             <Route exact path="/">
                 <FrontIndex />
             </Route>
-            <Route exact path="/login">
+            <Route  path="/login">
                 <FrontLogin />
             </Route>
             <Route exact path="/register">
