@@ -12,7 +12,7 @@ const Register = () => {
     return (<div>
         <div className="text-center">
             <div className="text-center">
-            <form className="form-signin">
+            <div className="form-signin">
                 <img className="mb-4" src="https://getbootstrap.com/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"/>
                 <h1 className="h3 mb-3 font-weight-normal">Kayıt Ol</h1>
                     <Formik
@@ -20,7 +20,7 @@ const Register = () => {
                             name: '',
                             email: '',
                             password: '',
-                            password_confirmaiton: ''
+                            password_confirmation: ''
                         }}
                         onSubmit={handleFormSubmit}
                         validationSchema={
@@ -121,7 +121,7 @@ const Register = () => {
                 </Formik>
                 <Link to="/login" className="mt-3 d-block">Giriş Yap</Link>
                 <p className="mt-5 mb-3 text-muted">© 2017-2019</p>
-            </form>
+            </div>
         </div>
         </div>
     </div>)

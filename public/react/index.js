@@ -199,7 +199,7 @@ var Register = function Register() {
       className: "text-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "text-center",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "form-signin",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
             className: "mb-4",
@@ -215,7 +215,7 @@ var Register = function Register() {
               name: '',
               email: '',
               password: '',
-              password_confirmaiton: ''
+              password_confirmation: ''
             },
             onSubmit: handleFormSubmit,
             validationSchema: yup__WEBPACK_IMPORTED_MODULE_3__.object().shape({
