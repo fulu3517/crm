@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -16,16 +17,18 @@ class AuthController extends Controller
             'password'=>'required|string|confirmed'
         ]);
 
+        // burada validasyon faile düşerse return yapılacak
         $user = new User([
             'name'=>$request->name,
             'email'=>$request->email,
-            'password'=>md5($request->password)
+            // 'password'=> Hash::make($request->password),
+            'password'=>md5($request->password) //md5 ile yapınca vendordan değiştirmek gerekiyor
         ]);
         $user->save();
 
         $crendentials = [
-                            'email'=>$request->email,
-                            'passwor'=> $request->password
+                'email'=>$request->email,
+                'password'=> $request->password
         ];
 
         if(!Auth::attempt($crendentials)) {
@@ -48,7 +51,7 @@ class AuthController extends Controller
             'id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            'access_token' => $tokenResult->acccesToken,
+            'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString()
         ], 201);

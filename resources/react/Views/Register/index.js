@@ -1,20 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/loginRegister.scss';
 import { Link } from "react-router-dom"
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
-
-const handleFormSubmit = () => {
-    alert("tıklandı")
-}
 const Register = () => {
+
+    const [errors, setErrors] = useState([]);
+
+    const handleFormSubmit = (values) => {
+        //burda values formikten geliyor
+        axios.post('api/auth/register',
+            { ...values }
+        ).then(res => {
+            if (res.data.success) {
+                const userData = {
+                    id: res.data.id,
+                    name: res.data.name,
+                    email: res.data.email,
+                    access_token: res.data.access_token
+                }
+    
+                const appState = {
+                    isLoggedIn: true,
+                    user: userData
+                }
+    
+                alet('Kayıt Tamalandı')
+            } else {
+                alert("giriş Yapamadınız")
+            }
+            console.log(res);
+        }).catch((error) => {
+            console.log("error", error);
+            if (error.response) {
+                let err = error.response.data;
+                console.log(err.errors);
+                setErrors(err.errors)
+            } else if (error.request) {
+                let err = error.request;
+                alert(err);
+            } else {
+                alert(err.message);
+            }
+        });
+    }
+    
+
+    let errorsArr = [];
+    Object.values(errors).forEach(value => {
+        errorsArr.push(value);
+    })
     return (<div>
         <div className="text-center">
             <div className="text-center">
             <div className="form-signin">
                 <img className="mb-4" src="https://getbootstrap.com/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"/>
-                <h1 className="h3 mb-3 font-weight-normal">Kayıt Ol</h1>
+                    <h1 className="h3 mb-3 font-weight-normal">Kayıt Ol</h1>
+                    {errors.length != 0 &&
+                        errorsArr.map(item, i => <p key={ i++ }>{ item }</p>)
+                        // console.log(errorsArr)
+                    }
                     <Formik
                         initialValues={{
                             name: '',
