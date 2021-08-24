@@ -23,6 +23,8 @@
     "dependencies": {
         "bootstrap": "^5.1.0",
         "formik": "^2.2.9",
+        "mobx": "^6.3.2",
+        "mobx-react": "^7.2.0",
         "react-bootstrap": "^2.0.0-beta.5",
         "react-router-dom": "^5.2.0",
         "yup": "^0.32.9"
