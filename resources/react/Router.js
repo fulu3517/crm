@@ -9,15 +9,12 @@ const Main = () => {
    
     return (
         <Switch>
-            <Route exact path="/">
-                <FrontIndex />
-            </Route>
-            <Route  path="/login">
-                <FrontLogin />
-            </Route>
-            <Route exact path="/register">
-                <FrontRegister />
-            </Route>
+            <Route exact path="/" component={FrontIndex}/>
+               
+            <Route  path="/login" component={FrontLogin}/>
+               
+            <Route exact path="/register" component={FrontRegister}/>
+           
         </Switch>
     );
 }

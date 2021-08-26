@@ -4,9 +4,10 @@ import { Link } from "react-router-dom"
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { inject, observer } from 'mobx-react';
 
-const Register = () => {
-
+const Register = (props) => {
+    console.log("props", props)
     const [errors, setErrors] = useState([]);
 
     const handleFormSubmit = (values) => {
@@ -26,8 +27,10 @@ const Register = () => {
                     isLoggedIn: true,
                     user: userData
                 }
+                props.AuthStore.saveToken(JSON.stringify(appState));
+                props.history.push('/');
     
-                alet('Kayıt Tamalandı')
+                
             } else {
                 alert("giriş Yapamadınız")
             }
@@ -42,7 +45,7 @@ const Register = () => {
                 let err = error.request;
                 alert(err);
             } else {
-                alert(err.message);
+                
             }
         });
     }
@@ -59,7 +62,7 @@ const Register = () => {
                 <img className="mb-4" src="https://getbootstrap.com/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"/>
                     <h1 className="h3 mb-3 font-weight-normal">Kayıt Ol</h1>
                     {errors.length != 0 &&
-                        errorsArr.map(item, i => <p key={ i++ }>{ item }</p>)
+                        errorsArr.map((item, i )=> <p key={ i++ }>{ item }</p>)
                         // console.log(errorsArr)
                     }
                     <Formik
@@ -174,4 +177,4 @@ const Register = () => {
     </div>)
 }
 
-export default Register;
+export default inject("AuthStore")(observer(Register));
