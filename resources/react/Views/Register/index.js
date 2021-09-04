@@ -27,8 +27,8 @@ const Register = (props) => {
                     isLoggedIn: true,
                     user: userData
                 }
-                props.AuthStore.saveToken(JSON.stringify(appState));
-                props.history.push('/');
+                props.AuthStore.saveToken(appState);
+                // props.history.push('/');
     
                 
             } else {

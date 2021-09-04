@@ -1,5 +1,7 @@
 import { observable, action, makeAutoObservable } from "mobx";
-
+import jwt_decode from "jwt-decode";
+import CryptoJS from "crypto-js";
+import sign from "jwt-encode";
 class AuthStore {
     appState = null;
 
@@ -13,7 +15,8 @@ class AuthStore {
 
     saveToken = (appState) => {
         try {
-            localStorage.setItem('appState', appState);
+            const cryptToken = CryptoJS.AES.encrypt(sign(appState, "secret"), "laravel-crm-app").toString();
+            localStorage.setItem('appState',cryptToken);
             this.getToken();
         } catch (error) {
             console.log(error)
@@ -24,7 +27,9 @@ class AuthStore {
         try {
             const appStateData = localStorage.getItem('appState');
             if (appStateData) {
-                this.appState = appStateData;
+                var bytes = CryptoJS.AES.decrypt(appStateData, "laravel-crm-app");
+                var originalText = bytes.toString(CryptoJS.enc.Utf8);
+                this.appState = jwt_decode(originalText);
             } else {
                 this.appState = null;
             }
