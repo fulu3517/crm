@@ -28,7 +28,7 @@ const Register = (props) => {
                     user: userData
                 }
                 props.AuthStore.saveToken(appState);
-                // props.history.push('/');
+                props.history.push('/');
     
                 
             } else {
@@ -62,7 +62,7 @@ const Register = (props) => {
                 <img className="mb-4" src="https://getbootstrap.com/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"/>
                     <h1 className="h3 mb-3 font-weight-normal">Kayıt Ol</h1>
                     {errors.length != 0 &&
-                        errorsArr.map((item, i )=> <p key={ i++ }>{ item }</p>)
+                        errorsArr.map((item, i )=> <p key={ i++ } className="text-danger">{ item }</p>)
                         // console.log(errorsArr)
                     }
                     <Formik
