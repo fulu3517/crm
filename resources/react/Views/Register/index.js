@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import '../styles/loginRegister.scss';
 import { Link } from "react-router-dom"
 import { Formik, Field } from 'formik';
@@ -9,6 +9,14 @@ import { inject, observer } from 'mobx-react';
 const Register = (props) => {
     console.log("props", props)
     const [errors, setErrors] = useState([]);
+
+    useEffect(() => {
+        if (props.AuthStore.appState != null) {
+            if (props.AuthStore.appState.isLoggedIn) {
+                return props.history.push('/') // useHistory ile de kullanabiliriz
+            }
+        }
+    }, []);
 
     const handleFormSubmit = (values) => {
         //burda values formikten geliyor
