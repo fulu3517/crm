@@ -3,6 +3,7 @@ import axios from 'axios';
 import { inject, observer } from 'mobx-react';
 import { useHistory } from 'react-router-dom';
 
+
 const LayoutFront = (props) => {
     props.AuthStore.getToken();
     const history = useHistory();
